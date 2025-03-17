@@ -1,6 +1,10 @@
-from flask import Flask, request,render_template
-
+from flask import Flask, request,render_template,jsonify
+import json 
 obj=Flask(__name__)
+
+@obj.route('/')
+def wlecome():
+    return "welcome to my calculator"
 
 @obj.route('/cal',methods=["GET"])
 def math_operator():
@@ -16,7 +20,7 @@ def math_operator():
         result=num1*num2
     else:
         result=num1/num2
-    return result
+    return jsonify(result)
 
 if __name__=='__main__':
     obj.run(debug=True)
